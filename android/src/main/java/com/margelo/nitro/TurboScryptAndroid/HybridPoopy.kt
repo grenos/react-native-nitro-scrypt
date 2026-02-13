@@ -48,6 +48,6 @@ class HybridPoopy(val context: ThemedReactContext) : HybridPoopySpec() {
         keyBuffer.rewind()
 
         // ByteBuffer -> ArrayBuffer
-        return ArrayBuffer(keyBuffer)
+        return ArrayBuffer.wrap(keyBuffer)
     }
 }
