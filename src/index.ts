@@ -1,8 +1,5 @@
 import { Platform } from 'react-native'
 
-import { CryptoSwift } from './CryptoSwift'
-import { BouncyCastle } from './BouncyCastle'
-
 export const Scrypt = {
   scrypt: (
     password: ArrayBuffer,
@@ -13,8 +10,8 @@ export const Scrypt = {
     size: number
   ): ArrayBuffer => {
     const openNative = Platform.select({
-      ios: () => CryptoSwift.scrypt(password, salt, N, r, p, size),
-      android: () => BouncyCastle.scrypt(password, salt, N, r, p, size),
+      ios: () => require('./CryptoSwift').CryptoSwift.scrypt(password, salt, N, r, p, size),
+      android: () => require('./BouncyCastle').BouncyCastle.scrypt(password, salt, N, r, p, size),
     })
 
     if (!openNative) {
